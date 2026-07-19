@@ -1,0 +1,90 @@
+<div id="datetime"></div>
+
+<script>
+function updateDateTime(){
+
+    const now = new Date();
+
+    const week = ["日","月","火","水","木","金","土"];
+
+    const date =
+        now.getFullYear() + "年" +
+        (now.getMonth()+1) + "月" +
+        now.getDate() + "日（" +
+        week[now.getDay()] + "）";
+
+    const time =
+        now.getHours() + "時" +
+        now.getMinutes().toString().padStart(2,"0") + "分";
+
+    document.getElementById("datetime").innerHTML =
+        date + "<br>" + time;
+}
+
+updateDateTime();
+setInterval(updateDateTime,1000);
+
+</script>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>看護ツールランチャー</title>
+
+<style>
+body {
+    font-family: sans-serif;
+    text-align: center;
+    background: #f2f7fb;
+    padding-top: 50px;
+}
+
+h1 {
+    color: #333;
+}
+
+button {
+    width: 300px;
+    height: 60px;
+    margin: 15px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    background: #4a90e2;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #357abd;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>看護ツールランチャー</h1>
+
+<button onclick="openTool('点滴計算アプリ.html')">
+💧 点滴計算アプリ
+</button>
+
+<br>
+
+<button onclick="openTool('酸素ボンベ残量計算アプリ.html')">
+🫁 酸素ボンベ残量計算アプリ
+</button>
+
+<script>
+function openTool(file){
+     location.href = "./" + file;
+}
+</script>
+
+<div class="footer">
+看護ツール Ver1.0<br>
+© 2026 Kitazawa Nursing Tools
+</div>
+</body>
+</html>
