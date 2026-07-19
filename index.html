@@ -1,11 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8">
+<title>看護ツールランチャー</title>
+
+<style>
+
+body {
+    font-family: sans-serif;
+    text-align: center;
+    background: #f2f7fb;
+    padding-top: 60px;
+}
+
+
+/* 日付表示 */
+#datetime {
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1.6;
+    margin-bottom: 50px;
+}
+
+
+/* タイトル */
+h1 {
+    color: #333;
+    font-size: 40px;
+    margin-bottom: 60px;
+}
+
+
+/* ボタン */
+button {
+
+    width: 90%;
+    max-width: 500px;
+
+    height: 120px;
+
+    margin: 25px;
+
+    font-size: 30px;
+    font-weight: bold;
+
+    border-radius: 20px;
+    border: none;
+
+    background: #4a90e2;
+    color: white;
+
+    cursor: pointer;
+}
+
+
+/* 押した時 */
+button:hover {
+    background: #357abd;
+}
+
+
+/* フッター */
+.footer {
+
+    margin-top: 80px;
+
+    font-size: 18px;
+
+    color: #555;
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- 日付 -->
+
 <div id="datetime"></div>
 
+
+
+<!-- タイトル -->
+
+<h1>
+🩺 看護ツール
+</h1>
+
+
+
+<!-- 点滴 -->
+
+<button onclick="openTool('点滴計算アプリ.html')">
+
+💧 点滴計算アプリ
+
+</button>
+
+
+<br>
+
+
+<!-- 酸素 -->
+
+<button onclick="openTool('酸素ボンベ残量計算アプリ.html')">
+
+🫁 酸素ボンベ残量計算アプリ
+
+</button>
+
+
+
+
+<div class="footer">
+
+看護ツール Ver1.0<br>
+© 2026 Kitazawa Nursing Tools
+
+</div>
+
+
+
+
+
 <script>
+
+
+// 日付・時間表示
+
 function updateDateTime(){
 
     const now = new Date();
 
-    const week = ["日","月","火","水","木","金","土"];
+
+    const week = [
+        "日",
+        "月",
+        "火",
+        "水",
+        "木",
+        "金",
+        "土"
+    ];
+
 
     const date =
         now.getFullYear() + "年" +
@@ -13,88 +155,38 @@ function updateDateTime(){
         now.getDate() + "日（" +
         week[now.getDay()] + "）";
 
+
     const time =
         now.getHours() + "時" +
         now.getMinutes().toString().padStart(2,"0") + "分";
 
+
     document.getElementById("datetime").innerHTML =
         date + "<br>" + time;
+
 }
+
+
 
 updateDateTime();
+
 setInterval(updateDateTime,1000);
 
-</script>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<title>看護ツールランチャー</title>
 
-<style>
-body {
-    font-family: sans-serif;
-    text-align: center;
-    background: #f2f7fb;
-    padding-top: 40px;
-}
 
-h1 {
-    color: #333;
-    font-size: 32px;
-    margin-bottom: 40px;
-}
 
-#datetime {
-    font-size: 26px;
-    font-weight: bold;
-    margin-bottom: 40px;
-    line-height: 1.5;
-}
+// アプリ起動
 
-button {
-    width: 90%;
-    max-width: 450px;
-    height: 90px;
-    margin: 20px;
-    font-size: 24px;
-    border-radius: 15px;
-    border: none;
-    background: #4a90e2;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #357abd;
-}
-</style>
-
-</head>
-
-<body>
-
-<h1>看護ツールランチャー</h1>
-
-<button onclick="openTool('点滴計算アプリ.html')">
-💧 点滴計算アプリ
-</button>
-
-<br>
-
-<button onclick="openTool('酸素ボンベ残量計算アプリ.html')">
-🫁 酸素ボンベ残量計算アプリ
-</button>
-
-<script>
 function openTool(file){
-     location.href = "./" + file;
+
+    location.href = "./" + file;
+
 }
+
+
 </script>
 
-<div class="footer">
-看護ツール Ver1.0<br>
-© 2026 Kitazawa Nursing Tools
-</div>
+
 </body>
+
 </html>
