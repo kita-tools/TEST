@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BMI計算</title>
+
+<style>
+
+body{
+    font-family:sans-serif;
+    text-align:center;
+    background:#f2f7fa;
+    margin:0;
+}
+
+.box{
+    background:white;
+    margin:45px auto 20px;
+    padding:20px;
+    border-radius:15px;
+    width:90%;
+    max-width:400px;
+}
+
+h2{
+    margin-top:5px;
+}
+
+.input-row{
+    margin:15px auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+label{
+    width:90px;
+    text-align:right;
+    margin-right:10px;
+}
+
+input{
+    width:120px;
+    font-size:18px;
+    padding:7px;
+    text-align:center;
+}
+
+.unit{
+    width:50px;
+    text-align:left;
+    margin-left:8px;
+}
+
+button{
+    font-size:18px;
+    padding:8px 20px;
+    margin:5px;
+}
+
+.result{
+    margin-top:20px;
+    font-size:20px;
+    line-height:2;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:25px;
+}
+
+th{
+    background:#4CAF50;
+    color:white;
+    padding:8px;
+}
+
+td{
+    border:1px solid #ccc;
+    padding:8px;
+}
+
+.note{
+    margin-top:10px;
+    font-size:13px;
+    color:#666;
+}
+
+.home{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#4CAF50;
+    color:white;
+    border:none;
+    border-radius:30px;
+    padding:12px 18px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>BMI計算</h2>
+
+<div class="input-row">
+<label>身長</label>
+<input id="height" type="number">
+<span class="unit">cm</span>
+</div>
+
+<div class="input-row">
+<label>体重</label>
+<input id="weight" type="number">
+<span class="unit">kg</span>
+</div>
+
+<button onclick="calcBMI()">
+計算
+</button>
+
+<button onclick="resetForm()">
+リセット
+</button>
+
+<div class="result" id="result">
+
+BMI　　　　－<br>
+判定　　　－<br>
+標準体重　－<br>
+肥満度　　－
+
+</div>
+
+<table>
+
+<tr>
+<th>BMI</th>
+<th>判定</th>
+</tr>
+
+<tr><td>18.5未満</td><td>低体重（やせ）</td></tr>
+<tr><td>18.5～24.9</td><td>普通体重</td></tr>
+<tr><td>25.0～29.9</td><td>肥満（1度）</td></tr>
+<tr><td>30.0～34.9</td><td>肥満（2度）</td></tr>
+<tr><td>35.0～39.9</td><td>肥満（3度）</td></tr>
+<tr><td>40.0以上</td><td>肥満（4度）</td></tr>
+
+</table>
+
+<div class="note">
+※判定は日本肥満学会の基準です。
+</div>
+
+</div>
+
+<button class="home" onclick="goHome()">
+🏠 戻る
+</button>
+
+<script>
+
+function calcBMI(){
+
+    let height =
+    Number(document.getElementById("height").value);
+
+    let weight =
+    Number(document.getElementById("weight").value);
+
+    if(height<=0){
+
+        alert("身長を入力してください");
+
+        return;
+
+    }
+
+    if(weight<=0){
+
+        alert("体重を入力してください");
+
+        return;
+
+    }
+
+    let h =
+    height / 100;
+
+    let bmi =
+    weight / (h * h);
+
+    let standard =
+    22 * h * h;
+
+    let obesity =
+    ((weight - standard) / standard) * 100;
+
+    let judge="";
+
+    if(bmi<18.5){
+
+        judge="低体重（やせ）";
+
+    }else if(bmi<25){
+
+        judge="普通体重";
+
+    }else if(bmi<30){
+
+        judge="肥満（1度）";
+
+    }else if(bmi<35){
+
+        judge="肥満（2度）";
+
+    }else if(bmi<40){
+
+        judge="肥満（3度）";
+
+    }else{
+
+        judge="肥満（4度）";
+
+    }
+
+    document.getElementById("result").innerHTML=
+
+    "BMI　　　　"+bmi.toFixed(1)+"<br>"+
+    "判定　　　"+judge+"<br>"+
+    "標準体重　"+standard.toFixed(1)+" kg<br>"+
+    "肥満度　　"+obesity.toFixed(1)+" %";
+
+}
+
+function resetForm(){
+
+    document.getElementById("height").value="";
+
+    document.getElementById("weight").value="";
+
+    document.getElementById("result").innerHTML=
+
+    "BMI　　　　－<br>"+
+    "判定　　　－<br>"+
+    "標準体重　－<br>"+
+    "肥満度　　－";
+
+}
+
+function goHome(){
+
+    location.href="看護ツールランチャー.HTML";
+
+}
+
+</script>
+
+</body>
+
+</html>
